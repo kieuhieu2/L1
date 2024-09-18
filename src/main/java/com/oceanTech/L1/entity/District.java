@@ -11,12 +11,21 @@ public class District {
     private long id;
     private String name;
 
-    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Commune> commune;
-
     @ManyToOne
     @JoinColumn(name = "province_id")
     private Province province;
+
+    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Commune> communes;
+
+    public List<Commune> getCommune() {
+        return communes;
+    }
+
+    public void setCommune(List<Commune> commune) {
+        this.communes = commune;
+    }
+
 
     public long getId() {
         return id;
@@ -40,5 +49,8 @@ public class District {
 
     public void setProvince(Province province) {
         this.province = province;
+    }
+
+    public void setCommunes(List<Commune> communes) {
     }
 }

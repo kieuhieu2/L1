@@ -1,11 +1,12 @@
 package com.oceanTech.L1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.oceanTech.L1.validator.EmployeeConstraint;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
+@EmployeeConstraint
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +16,53 @@ public class Employee {
     private String email;
     private String phone;
     private int age;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "province_id")
+    private Province province;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "district_id")
+    private District district;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "commune_id")
+    private Commune commune;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Certificate> certificates;
+
+    public List<Certificate> getCertificates() {
+        return certificates;
+    }
+
+    public void setCertificates(List<Certificate> certificates) {
+        this.certificates = certificates;
+    }
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
+
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+
+    public Commune getCommune() {
+        return commune;
+    }
+
+    public void setCommune(Commune commune) {
+        this.commune = commune;
+    }
 
     public long getId() {
         return id;

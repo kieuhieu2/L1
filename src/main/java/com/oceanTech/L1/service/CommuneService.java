@@ -44,4 +44,9 @@ public class CommuneService {
         return communeRepository.findByName(communeName);
 
     }
+
+    public List<Commune> getCommunesByDistrictId(Long districtId) {
+        return communeRepository.findByDistrictId(districtId);
+    }
+
 }

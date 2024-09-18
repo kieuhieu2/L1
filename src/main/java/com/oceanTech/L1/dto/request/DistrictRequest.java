@@ -1,8 +1,17 @@
 package com.oceanTech.L1.dto.request;
 
+import com.oceanTech.L1.entity.Commune;
+
+import java.util.List;
+
 public class DistrictRequest {
     private String name;
     private Long provinceId;
+    private List<Commune> communes;
+
+    public void setCommunes(List<Commune> communes) {
+        this.communes = communes;
+    }
 
     public Long getProvinceId() {
         return provinceId;
@@ -18,5 +27,10 @@ public class DistrictRequest {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    public List<Commune> getCommunes() {
+        return communes;
     }
 }

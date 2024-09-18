@@ -1,11 +1,10 @@
 package com.oceanTech.L1.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 public class Certificate {
@@ -15,6 +14,33 @@ public class Certificate {
     private String name;
     private LocalDate validFrom;
     private LocalDate validTo;
+    private String province;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    @JsonBackReference
+    private Employee employee;
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
 
     public long getId() {
         return id;

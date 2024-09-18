@@ -24,6 +24,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'org.apache.poi:poi-ooxml:4.1.1'
+	implementation 'jakarta.validation:jakarta.validation-api:3.0.0'
+	implementation 'org.hibernate.validator:hibernate-validator:7.0.1.Final'
 }
 
 tasks.named('test') {

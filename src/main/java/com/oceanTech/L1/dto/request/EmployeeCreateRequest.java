@@ -7,6 +7,34 @@ public class EmployeeCreateRequest {
     private String phone;
     private int age;
 
+    private String province;
+    private String district;
+    private String commune;
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(String district) {
+        this.district = district;
+    }
+
+    public String getCommune() {
+        return commune;
+    }
+
+    public void setCommune(String commune) {
+        this.commune = commune;
+    }
+
     public String getCode() {
         return code;
     }

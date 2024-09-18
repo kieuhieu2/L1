@@ -1,5 +1,6 @@
 package com.oceanTech.L1.controller;
 
+import com.oceanTech.L1.dto.request.ProvinceAllRequest;
 import com.oceanTech.L1.dto.request.ProvinceRequest;
 import com.oceanTech.L1.entity.District;
 import com.oceanTech.L1.entity.Province;
@@ -56,5 +57,11 @@ public class ProvinceController {
     @GetMapping("/getDistrict/{provinceId}")
     public List<District> getDistrictByIdProvince(@PathVariable Long provinceId) {
         return provinceService.getDistrictByIdProvince(provinceId);
+    }
+
+
+    @PostMapping("/createWithDistrictsAndCommunes")
+    public Province createProvinceWithDistrictsAndCommunes(@RequestBody ProvinceAllRequest request) {
+        return provinceService.createProvinceWithDistrictsAndCommunes(request);
     }
 }

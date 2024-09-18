@@ -1,13 +1,16 @@
 package com.oceanTech.L1.service;
 
+import com.oceanTech.L1.dto.request.DistrictRequest;
+import com.oceanTech.L1.dto.request.ProvinceAllRequest;
 import com.oceanTech.L1.dto.request.ProvinceRequest;
+import com.oceanTech.L1.entity.Commune;
 import com.oceanTech.L1.entity.District;
 import com.oceanTech.L1.entity.Province;
+import com.oceanTech.L1.repository.CommuneRepository;
 import com.oceanTech.L1.repository.DistrictRepository;
 import com.oceanTech.L1.repository.ProvinceRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,6 +22,9 @@ public class ProvinceService {
 
     @Autowired
     private DistrictRepository districtRepository;
+
+    @Autowired
+    private CommuneRepository communeRepository;
 
     public Province createProvince(ProvinceRequest request) {
         Province province = new Province();
@@ -91,6 +97,26 @@ public class ProvinceService {
 
     public List<District> getDistrictByIdProvince(Long provinceId) {
         return districtRepository.findByProvinceId(provinceId);
+    }
+
+    @Transactional
+    public Province createProvinceWithDistrictsAndCommunes(ProvinceAllRequest request) {
+        // Create and save the new Province
+        Province province = new Province();
+        province.setName(request.getName());
+        Province savedProvince = provinceRepository.save(province);
+
+        // Create and save the new District
+        District district = request.getDistrictAll();
+        district.setProvince(savedProvince);
+        District savedDistrict = districtRepository.save(district);
+
+        // Create and save the new Commune
+        Commune commune = request.getCommuneAll();
+        commune.setDistrict(savedDistrict);
+        communeRepository.save(commune);
+
+        return savedProvince;
     }
 
 }

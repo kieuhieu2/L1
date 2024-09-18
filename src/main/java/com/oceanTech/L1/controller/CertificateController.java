@@ -1,10 +1,10 @@
 package com.oceanTech.L1.controller;
 
 import com.oceanTech.L1.dto.request.CertificateCreateRequest;
+import com.oceanTech.L1.dto.request.CertificatePublicRequest;
 import com.oceanTech.L1.entity.Certificate;
 import com.oceanTech.L1.service.CertificateService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,11 +19,6 @@ public class CertificateController {
     @PostMapping
     public Certificate createCertificate(@RequestBody CertificateCreateRequest request) {
         return certificateService.createCertificate(request);
-    }
-
-    @PutMapping("/{certificateName}")
-    public Certificate updateCertificate(@PathVariable String certificateName,@RequestBody CertificateCreateRequest request) {
-        return certificateService.updateCertificate(certificateName, request);
     }
 
     @DeleteMapping("/{id}")

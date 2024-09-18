@@ -7,6 +7,23 @@ public class CertificateCreateRequest {
     private String name;
     private LocalDate validFrom;
     private LocalDate validTo;
+    private String provinceName;
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
+    public void setProvinceName(String provinceName) {
+        this.provinceName = provinceName;
+    }
+
+    public void setProvince(String province) {
+        this.provinceName = province;
+    }
+
+    public String getProvince() {
+        return provinceName;
+    }
 
     public String getName() {
         return name;
